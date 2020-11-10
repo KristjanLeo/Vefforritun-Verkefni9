@@ -27,7 +27,7 @@ async function DisplayData(DisplayData){
 		button[i] = element('button', {}, {}, 'Sjá á korti');
 		buttons[i] = element('div', {'class': 'buttons'}, {}, button[i], links[i]);
 		Timi[i] = element('dt', {}, {}, 'Tími');
-		Dates[i] = element('dd', {}, {}, `${DisplayData.features[i].properties.time}`);
+		Dates[i] = element('dd', {}, {}, `${formatDate(DisplayData.features[i].properties.time)}`);
 		Styrkur[i] = element('dt', {}, {}, 'Styrkur');
 		Richter[i] = element('dd', {}, {}, `${DisplayData.features[i].properties.mag} á richter`);
 		Nanar[i] = element('dt', {}, {}, 'Nánar');

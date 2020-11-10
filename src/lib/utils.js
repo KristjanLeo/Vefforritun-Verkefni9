@@ -70,4 +70,12 @@ export function el(name, ...children) {
  */
 export function formatDate(timestamp) {
   // TODO Útfæra með „vanilla JS“ eða nota date-fns pakka
+  const date = new Date(timestamp);
+  const Day = date.getDate() > 9 ? date.getDate() : '0' + date.getDate();
+  const Month = date.getMonth() + 1 > 9 ? (date.getMonth() + 1) : '0' + (date.getMonth() + 1);
+  const Year = date.getYear() > 9 ? (1900 + date.getYear()) : '0' + (1900 + date.getYear());
+  const Hour = date.getHours() > 9 ? date.getHours() : '0' + date.getHours();
+  const Minute = date.getMinutes() > 9 ? date.getMinutes() : '0' + date.getMinutes();
+  const Second = date.getSeconds() > 9 ? date.getSeconds() : '0' + date.getSeconds();
+  return Day + '.' + Month + '.' + Year + ' ' + Month + ':' + Minute + ':' + Second;
 }
