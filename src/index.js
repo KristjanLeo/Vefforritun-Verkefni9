@@ -1,6 +1,6 @@
 import { el, element, formatDate } from './lib/utils';
 import { fetchEarthquakes } from './lib/earthquakes.js';
-import { init } from './lib/map.js';
+import { init, createPopup } from './lib/map.js';
 // importa öðru sem þarf...
 
 
@@ -47,5 +47,6 @@ document.addEventListener('DOMContentLoaded', async () => {
 	await fetchEarthquakes().then((data) => {
 		DisplayData(data);
 		console.log(data);
+		createPopup(data, element('div', {}, {}, 'foo'));
 	});
 });
