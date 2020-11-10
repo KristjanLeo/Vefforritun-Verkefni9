@@ -1,7 +1,6 @@
 import { el, element, formatDate } from './lib/utils';
 import { fetchEarthquakes } from './lib/earthquakes.js';
-import { init, createPopup } from './lib/map.js';
-// importa öðru sem þarf...
+import { init, createPopup, Popup } from './lib/map.js';
 
 /**
  * Displays the data (as text)
@@ -27,7 +26,7 @@ async function DisplayData(DisplayData){
 
 	for(let i = 0; i < Fjoldi; i++){
 		links[i] = element('a', {'href': `${DisplayData.features[i].properties.url}`}, {}, 'Skoða nánar');
-		button[i] = element('button', {}, {}, 'Sjá á korti');
+		button[i] = element('button', {'id': `marker-${i}`}, {click: (e) => {Popup(e.target.id)}}, 'Sjá á korti');
 		buttons[i] = element('div', {'class': 'buttons'}, {}, button[i], links[i]);
 		Timi[i] = element('dt', {}, {}, 'Tími');
 		Dates[i] = element('dd', {}, {}, `${formatDate(DisplayData.features[i].properties.time)}`);
