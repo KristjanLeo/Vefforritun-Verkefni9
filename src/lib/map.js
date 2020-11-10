@@ -5,9 +5,11 @@ let map;
 // Býr til popup á korti út frá geojson með content
 export function createPopup(geojson, content) {
   // TODO
-   L.geoJSON(geojson, {})
-   		.bindPopup(content)
-		.addTo(map);
+  for(let i = 0; i < content.length; i++){
+   L.geoJSON(geojson.features[i], {})
+   		.bindPopup(content[i])
+		  .addTo(map);
+  }
 }
 
 // Býr til Leaflet kort og setur miðju á (0, 0) í zoom level 2

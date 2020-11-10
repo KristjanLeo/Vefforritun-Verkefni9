@@ -3,7 +3,10 @@ import { fetchEarthquakes } from './lib/earthquakes.js';
 import { init, createPopup } from './lib/map.js';
 // importa öðru sem þarf...
 
-
+/**
+ * Displays the data (as text)
+ * @param {json} DisplayData the data to display
+ * */
 async function DisplayData(DisplayData){
 
 	const Earthquakes = document.querySelector('.earthquakes');
@@ -41,12 +44,31 @@ async function DisplayData(DisplayData){
 
 }
 
+async function DisplayOnMap(DisplayData){
+	let Info = new Array(DisplayData.features.length);
+	let Title = new Array(DisplayData.features.length);
+	let DateAndTime = new Array(DisplayData.features.length);
+	let theLink = new Array(DisplayData.features.length);
+	let breaks = new Array(DisplayData.features.length*2);
+	for(let i = 0; i < DisplayData.features.length; i++){
+		Title[i] = element('h2', {}, {}, `M ${DisplayData.features[i].properties.mag} - ${DisplayData.features[i].properties.place}`);
+		DateAndTime[i] = element('div', {}, {}, `${formatDate(DisplayData.features[i].properties.time)}`);
+		theLink[i] = element('a', {'href': `${DisplayData.features[i].properties.url}`}, {}, 'Skoða nánar');
+		breaks[i] = element('br', {}, {},'');
+		breaks[i+DisplayData.features.length] = element('br', {}, {},'');
+		Info[i] = element('div', {}, {}, Title[i], breaks[i], DateAndTime[i], breaks[i + DisplayData.features.length], theLink[i]);
+	}
+	createPopup(DisplayData, Info);
+
+}
+
+
 document.addEventListener('DOMContentLoaded', async () => {	
 	const theMap = document.querySelector('.map');
 	init(theMap);
 	await fetchEarthquakes().then((data) => {
 		DisplayData(data);
+		DisplayOnMap(data);
 		console.log(data);
-		createPopup(data, element('div', {}, {}, 'foo'));
 	});
 });
