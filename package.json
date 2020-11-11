@@ -4,7 +4,7 @@
   "description": "## Lýsing",
   "main": "index.js",
   "scripts": {
-    "browser-sync": "browser-sync start --server --files \"*\" src/\"*\" src/lib/\"*\"",
+    "browser-sync": "browser-sync start --server --files \"*\" src/\"*\" src/lib/\"*\" dist/\"*\"",
     "build": "rollup -c",
     "rollup-watch": "rollup -c -w",
     "dev": "concurrently npm:rollup-watch npm:browser-sync",
