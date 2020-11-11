@@ -23,15 +23,15 @@ export function element(name, attributes = null, events = null, ...children) {
 
   for (let i = 0; i < children.length; i += 1) {
     if (attributes) {
-      for (const attrib in attributes) {
-        el.setAttribute(attrib, attributes[attrib]);
-      }
+      Object.keys(attributes).forEach((key) => {
+        el.setAttribute(key, attributes[key]);
+      });
     }
 
     if (events) {
-      for (const event in events) {
-        el.addEventListener(event, events[event]);
-      }
+      Object.keys(events).forEach((key) => {
+        el.addEventListener(key, events[key]);
+      });
     }
 
     if (typeof children[i] === 'string') {

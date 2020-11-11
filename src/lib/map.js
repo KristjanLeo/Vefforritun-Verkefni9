@@ -4,7 +4,6 @@ let map;
 const markers = [];
 
 export function createPopup(geojson, content) {
-  // TODO
   for (let i = 0; i < content.length; i += 1) {
     const marker = L.geoJSON(geojson.features[i], { title: `marker-${i}` })
       .bindPopup(content[i])

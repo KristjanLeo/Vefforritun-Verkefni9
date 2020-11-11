@@ -41,6 +41,10 @@ async function DisplayData(TheDisplayData) {
   }
 }
 
+/**
+ * Formats and displays markers on the map
+ * @param {json} TheDisplayData the data to display (as markers)
+ */
 async function DisplayOnMap(TheDisplayData) {
   const Info = new Array(TheDisplayData.features.length);
   const Title = new Array(TheDisplayData.features.length);
