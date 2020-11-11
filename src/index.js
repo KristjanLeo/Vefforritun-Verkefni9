@@ -1,5 +1,5 @@
 import { element, formatDate } from './lib/utils';
-import { fetchEarthquakes } from './lib/earthquakes';
+import fetchEarthquakes from './lib/earthquakes';
 import { init, createPopup, Popup } from './lib/map';
 
 /**

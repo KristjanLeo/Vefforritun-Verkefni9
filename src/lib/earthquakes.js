@@ -12,7 +12,7 @@
 const URL = 'https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/4.5_week.geojson';
 const Loading = document.querySelector('.loading');
 
-export async function fetchEarthquakes() {
+async function fetchEarthquakes() {
   const TheData = await fetch(URL)
     .then((result) => {
       if (!result.ok) {
@@ -25,9 +25,10 @@ export async function fetchEarthquakes() {
       Loading.parentNode.removeChild(Loading);
       return data;
     })
-    .catch((error) => {
-      console.error('Villa', error);
+    .catch(() => {
       Loading.innerText = 'Villa við að sækja gögn';
     });
   return TheData;
 }
+
+export default fetchEarthquakes;
